@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="#090909">
+ <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="60dp" android:gravity="center_vertical"
+  android:paddingHorizontal="18dp" android:text="MY MEDIA" android:textColor="#ffffff" android:textSize="22sp" android:textStyle="bold"/>
+ <TextView android:id="@+id/hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="18dp"
+  android:text="اختر فيديوهات وصورًا من هاتفك لتبقى في مكتبتك" android:textColor="#aaaaaa" android:textSize="15sp"/>
+ <Button android:id="@+id/addButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_margin="14dp" android:text="+ إضافة من الهاتف"/>
+ <GridView android:id="@+id/grid" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+  android:numColumns="2" android:verticalSpacing="4dp" android:horizontalSpacing="4dp" android:padding="4dp"/>
+</LinearLayout>
