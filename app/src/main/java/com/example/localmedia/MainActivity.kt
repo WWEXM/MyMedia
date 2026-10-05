@@ -7,6 +7,8 @@ import android.net.Uri
 import android.view.*
 import android.widget.*
 import android.graphics.Color
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 
 class MainActivity : Activity() {
     private lateinit var grid: GridView
@@ -54,7 +56,22 @@ class MainActivity : Activity() {
                 iv.layoutParams=AbsListView.LayoutParams(-1, 230)
                 iv.scaleType=ImageView.ScaleType.CENTER_CROP
                 iv.setBackgroundColor(Color.rgb(25,25,25))
-                iv.setImageURI(items[p])
+                val uri = items[p]
+                val mime = contentResolver.getType(uri)
+
+                if (mime?.startsWith("video/") == true) {
+                val retriever = MediaMetadataRetriever()
+                    try {
+                retriever.setDataSource(this@MainActivity, uri)
+                iv.setImageBitmap(retriever.getFrameAtTime(0))
+                    } catch (_: Exception) {
+                iv.setImageResource(android.R.drawable.ic_media_play)
+                    } finally {
+                retriever.release()
+                          }
+                          } else {
+                iv.setImageURI(uri)
+                          }
                 iv.setOnClickListener { open(items[p]) }
                 iv.setOnLongClickListener {
                     AlertDialog.Builder(this@MainActivity).setTitle("إزالة من المكتبة؟")
